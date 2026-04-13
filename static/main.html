@@ -1,30 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <title>MZZ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Milano - Mappa Vedovelle</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="/static/style.css">
     
+    <style>
+        /* Stile specifico per il contenitore della mappa */
+        #map { 
+            height: 450px; 
+            width: 100%; 
+            border-radius: 8px; 
+            margin: 20px 0; 
+            border: 2px solid #333;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <h1>Chi Sono?</h1>
-        <p>Nome: Matteo</p>
-        <p>Cognome: Mazzola</p>
-        <p>Data di nascita: 28/05/2009</p>
-        <p>Luogo di nascita: Milano</p>
-    </div>
-
     <div class="container">
-        <p id="orario">Clicca il tasto per conoscere l'ora del server</p>
-        <button id="btn-ora">Aggiorna Ora</button>
-    </div>
-    <div class="card">
-        <h3>Saluto Personalizzato</h3>
-        <input type="text" id="input-nome" placeholder="Scrivi il tuo nome...">
-        <button id="btn-saluto">Invia al Server</button>
-        <h2 id="risposta-saluto"></h2>
+        <h1>Dashboard Interattiva Milano</h1>
+
+        <div class="section">
+            <div class="control-group">
+                <button id="btn-ora">Verifica Ora Server</button>
+                <span id="orario">--:--:--</span>
+            </div>
+            
+            <div class="control-group" style="margin-top: 15px;">
+                <input type="text" id="input-nome" placeholder="Inserisci il tuo nome">
+                <button id="btn-saluto">Invia Saluto</button>
+                <p id="risposta-saluto"></p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Cerca Fontanelle nel Quartiere (NIL)</h3>
+            <p><small>Esempi: ADRIANO, DUOMO, LORENTEGGIO, AFFORI</small></p>
+            
+            <div class="control-group">
+                <input type="text" id="input-nil" placeholder="Nome quartiere...">
+                <button id="btn-cerca">Cerca e Localizza</button>
+            </div>
+
+            <div id="map"></div>
+
+            <p id="info-risultati"></p>
+            <table id="tabella-fontanelle" border="1" style="display:none; width:100%;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NIL</th>
+                        <th>Municipio</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo-tabella"></tbody>
+            </table>
+        </div>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="/static/script.js"></script>
 </body>
 </html>
