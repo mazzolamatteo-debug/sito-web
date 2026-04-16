@@ -2,66 +2,75 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Milano - Mappa Vedovelle</title>
-    
+    <title>Dashboard Milano</title>
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="/static/style.css">
-    
+
     <style>
-        /* Stile specifico per il contenitore della mappa */
-        #map { 
-            height: 450px; 
-            width: 100%; 
-            border-radius: 8px; 
-            margin: 20px 0; 
+        #map {
+            height: 450px;
+            width: 100%;
+            margin: 20px 0;
             border: 2px solid #333;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Dashboard Interattiva Milano</h1>
+<div class="container">
+    <h1>Dashboard Milano</h1>
 
-        <div class="section">
-            <div class="control-group">
-                <button id="btn-ora">Verifica Ora Server</button>
-                <span id="orario">--:--:--</span>
-            </div>
-            
-            <div class="control-group" style="margin-top: 15px;">
-                <input type="text" id="input-nome" placeholder="Inserisci il tuo nome">
-                <button id="btn-saluto">Invia Saluto</button>
-                <p id="risposta-saluto"></p>
-            </div>
-        </div>
+    <!-- ORA -->
+    <button id="btn-ora">Ora Server</button>
+    <span id="orario"></span>
 
-        <div class="section">
-            <h3>Cerca Fontanelle nel Quartiere (NIL)</h3>
-            <p><small>Esempi: ADRIANO, DUOMO, LORENTEGGIO, AFFORI</small></p>
-            
-            <div class="control-group">
-                <input type="text" id="input-nil" placeholder="Nome quartiere...">
-                <button id="btn-cerca">Cerca e Localizza</button>
-            </div>
-
-            <div id="map"></div>
-
-            <p id="info-risultati"></p>
-            <table id="tabella-fontanelle" border="1" style="display:none; width:100%;">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NIL</th>
-                        <th>Municipio</th>
-                    </tr>
-                </thead>
-                <tbody id="corpo-tabella"></tbody>
-            </table>
-        </div>
+    <!-- SALUTO -->
+    <div>
+        <input id="input-nome" placeholder="Nome">
+        <button id="btn-saluto">Saluta</button>
+        <p id="risposta-saluto"></p>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="/static/script.js"></script>
+    <!-- RICERCA -->
+    <h3>Cerca Fontanelle</h3>
+    <input id="input-nil" placeholder="Quartiere">
+    <button id="btn-cerca">Cerca</button>
+
+    <div id="map"></div>
+
+    <p id="info-risultati"></p>
+
+    <table id="tabella-fontanelle" style="display:none; width:100%;">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>NIL</th>
+            <th>Municipio</th>
+        </tr>
+        </thead>
+        <tbody id="corpo-tabella"></tbody>
+    </table>
+
+    <!-- 🔢 CONTA FONTANELLE -->
+    <h3>Statistiche</h3>
+    <button id="btn-conta">Conta Fontanelle per Quartiere</button>
+
+    <p id="info-conteggi"></p>
+
+    <table id="tabella-conteggi" style="display:none; width:100%;">
+        <thead>
+        <tr>
+            <th>Quartiere</th>
+            <th>Totale</th>
+        </tr>
+        </thead>
+        <tbody id="corpo-conteggi"></tbody>
+    </table>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/static/script.js"></script>
 </body>
 </html>
